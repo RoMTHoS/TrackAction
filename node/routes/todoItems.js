@@ -11,7 +11,7 @@ router.post("/api/item", async (req, res) => {
     });
     // save this item in db
     const saveItem = await newItem.save();
-    res.status(200).json("Item added succesfully");
+    res.status(200).json(saveItem);
   } catch (error) {
     res.json(error);
   }
