@@ -1,0 +1,101 @@
+.todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  width: 500px;
+  margin: 50px auto;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.todo h1 {
+  text-align: center;
+}
+
+.todo-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.todo-form input {
+  padding: 10px;
+  width: 85%;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.todo-form input:focus,
+.todo-form form button:focus {
+  outline: none;
+}
+
+.todo-form button {
+  background-color: #008080;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.todolist-items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item-content {
+  width: 60%;
+}
+
+.todo-item button {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.todo-item button:focus {
+  outline: none;
+}
+
+.update-todo-button {
+  background-color: goldenrod;
+  color: #fff;
+}
+
+.delete-todo-button {
+  background-color: red;
+  color: #fff;
+}
+
+.update-todo-form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.update-todo-input {
+  width: 80%;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  padding: 8px;
+  outline: none;
+}
+
+.update-todo-new-btn {
+  background-color: darkorchid;
+  color: #fff;
+  cursor: pointer;
+}

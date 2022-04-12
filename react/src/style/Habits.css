@@ -1,0 +1,98 @@
+.habits-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px;
+  font-size: 20px;
+}
+
+th {
+  background-color: rgb(117, 201, 250);
+}
+
+td {
+  background-color: rgb(205, 235, 253);
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+form td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+form * {
+  font-size: 20px;
+}
+
+.day {
+  width: 40px;
+}
+
+.box-green {
+  background-color: green;
+}
+
+.box-blue {
+  background-color: blue;
+}
+
+.box-red {
+  background-color: red;
+}
+
+.add-habit {
+  margin: auto;
+}
+
+.color-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.radio-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.green {
+  width: 30px;
+  height: 30px;
+  background-color: green;
+}
+
+.blue {
+  width: 30px;
+  height: 30px;
+  background-color: blue;
+}
+
+.red {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+}
+
+.neutre {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(117, 201, 250);
+}

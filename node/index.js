@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5500;
 app.use(cors());
 
 //Import routes
-const TodoItemRoute = require("./routes/todoItems");
+const Routes = require("./routes/routes");
 
 //Connection to mongodb
 mongoose
@@ -21,7 +21,7 @@ mongoose
   .then(() => console.log("DataBase connected"))
   .catch((err) => console.log(err));
 
-app.use("/", TodoItemRoute);
+app.use("/", Routes);
 
 //Add port and  onnect to server
 app.listen(PORT, () => console.log("Server connected"));

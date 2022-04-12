@@ -5,7 +5,11 @@ const mongoose = require("mongoose");
 const TodoItemSchema = new mongoose.Schema({
   item: {
     type: String,
-    required: true,
+    require: true,
+  },
+  user_email: {
+    type: String,
+    require: true,
   },
 });
 

@@ -2,7 +2,7 @@ POST http://localhost:5500/api/item
 Content-Type: application/json
 
 {
-    "item": "This is the second todo item"
+    "item": "This is the test todo item"
 }
 
 ###
@@ -24,3 +24,47 @@ Content-Type: application/json
 
 DELETE http://localhost:5500/api/item/624b03a4b9294ba722f5af25
 Content-Type: application/json
+
+
+###
+
+POST http://localhost:5500/users
+Content-Type: application/json
+
+{
+    "email": "romain.matheos.31@gmail.com",
+    "password" : "motdepasse",
+    "firstname" : "Romain",
+    "lastname" : "Matheos",
+    "creatAt" : "19/11/1998"
+}
+
+### 
+
+GET http://localhost:5500/users
+Content-Type: application/json
+
+###
+
+POST http://localhost:5500/habit
+Content-Type: application/json
+
+{
+    "habit": "Reveil 6h",
+    "condition" : "No snooze",
+    "user_email": "romain.matheos.31@gmail.com"
+}
+
+###
+
+GET http://localhost:5500/habit
+Content-Type: application/json
+
+###
+
+PUT http://localhost:5500/habit/625496569d8cfd3d9ab6c234
+Content-Type: application/json
+
+{
+    "className" : ["box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green", "box-green"]
+}
