@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Todo from "./pages/Todo";
-import Home from "./pages/Home";
 import Acceuil from "./pages/Acceuil";
 import { UserContext } from "./context/userContext";
 import { ToastContainer } from "react-toastify";
@@ -11,14 +10,23 @@ import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./components/Navigation";
 import MyCalendar from "./pages/Calendar";
 import Habits from "./pages/Habits";
+import Planning from "./pages/Planning";
+import Notes from "./pages/Notes";
 
 function App() {
-  const { user } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    console.log(loggedInUser);
+    if (loggedInUser) {
+      setUser(loggedInUser);
+    }
+  }, []);
 
   return (
     <div>
       <Navigation />
-      <Home />
       <Routes>
         <Route path="/" element={<Acceuil />} />
         <Route path="/login" element={<Login />} />
@@ -26,6 +34,8 @@ function App() {
         <Route path="/todo" element={<Todo />} />
         <Route path="/calendar" element={<MyCalendar />} />
         <Route path="/habits" element={<Habits />} />
+        <Route path="/planning" element={<Planning />} />
+        <Route path="/notes" element={<Notes />} />
       </Routes>
       <ToastContainer />
     </div>

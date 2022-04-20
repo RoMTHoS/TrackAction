@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/Home.css";
 import { UserContext } from "../context/userContext";
-import { isEmpty } from "../components/utils";
 
-function Home(props) {
+function Home() {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
@@ -15,7 +14,7 @@ function Home(props) {
   const register = () => {
     navigate("/register");
   };
-  return isEmpty(user) ? (
+  return (
     <>
       <main className="home">
         <h1>TRACK ACTION</h1>
@@ -28,7 +27,7 @@ function Home(props) {
         </div>
       </main>
     </>
-  ) : null;
+  );
 }
 
 export default Home;

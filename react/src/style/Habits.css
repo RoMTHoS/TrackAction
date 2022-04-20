@@ -56,6 +56,10 @@ form * {
   background-color: red;
 }
 
+.box-neutre {
+  background-color: rgb(117, 201, 250);
+}
+
 .add-habit {
   margin: auto;
 }

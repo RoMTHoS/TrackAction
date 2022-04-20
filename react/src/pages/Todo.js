@@ -3,8 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import "../style/Todo.css";
 import axios from "axios";
 import { UserContext } from "../context/userContext";
-import { isEmpty } from "../components/utils";
-import { useNavigate } from "react-router-dom";
 
 function Todo() {
   const [itemText, setItemText] = useState("");
@@ -13,7 +11,7 @@ function Todo() {
   const [updateItemText, setUpdateItemText] = useState("");
 
   const { user } = useContext(UserContext);
-  const navigate = useNavigate();
+  console.log(user);
 
   // add new todo item to database
   const addItem = async (e) => {
@@ -36,18 +34,18 @@ function Todo() {
     const getItemList = async () => {
       try {
         const res = await axios.get("http://localhost:5500/api/items");
-        setListItems(res.data.filter((el) => el.user_email === user.email));
+        setListItems(res.data.filter((el) => el.user_email === user));
       } catch (error) {
         console.log(error);
       }
     };
     getItemList();
-  }, []);
+  }, [user]);
 
   // Delete item
   const deleteItem = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5500/api/item/${id}`);
+      await axios.delete(`http://localhost:5500/api/item/${id}`);
       const newListItems = listItems.filter((item) => item._id !== id);
       setListItems(newListItems);
     } catch (error) {
@@ -98,9 +96,7 @@ function Todo() {
     }
   };
 
-  return isEmpty(user) ? (
-    navigate("/login")
-  ) : (
+  return (
     <div className="todo">
       <h1>Todo List</h1>
       <form className="todo-form" onSubmit={(e) => addItem(e)}>

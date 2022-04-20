@@ -1,25 +1,28 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Navigation.css";
 import { UserContext } from "../context/userContext";
-import { isEmpty } from "./utils";
+import Acceuil from "../pages/Acceuil";
 
-function Navigation(props) {
+function Navigation() {
   const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const exit = () => {
-    setUser({});
+    setUser(null);
+    localStorage.clear();
+    navigate("/");
   };
 
-  return isEmpty(user) ? null : (
+  return (
     <nav>
       <button onClick={exit}> Deconnexion</button>
-      <h3>{user.email}</h3>
-      <Link to="/planing">PLaning Hebdomadaire</Link>
+      <h3>{user}</h3>
+      <Link to="/planning">Planing Hebdomadaire</Link>
       <Link to="/habits">Tracker d'habitude</Link>
-      <Link to="/calendar">Calendrier</Link>
       <Link to="/todo">Todo Liste</Link>
-      <Link to="/journal">Journal Perso</Link>
+      <Link to="/notes">Notes</Link>
+      <Link to="/calendar">Calendrier</Link>
     </nav>
   );
 }

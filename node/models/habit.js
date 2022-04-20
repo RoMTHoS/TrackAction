@@ -13,7 +13,7 @@ const HabitSchema = new mongoose.Schema({
   },
   user_email: {
     type: String,
-    require: true,
+    required: true,
   },
   className: [String],
 });

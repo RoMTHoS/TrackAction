@@ -6,6 +6,7 @@ const cors = require("cors");
 const app = express();
 // use express.json() to get data into json format
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 //Port
 const PORT = process.env.PORT || 5500;
 

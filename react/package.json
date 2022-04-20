@@ -12,6 +12,7 @@
     "formik": "^2.2.9",
     "react": "^18.0.0",
     "react-big-calendar": "^0.40.0",
+    "react-color": "^2.19.3",
     "react-datepicker": "^4.7.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",

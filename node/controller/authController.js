@@ -1,6 +1,66 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
+const jwt = require("jsonwebtoken");
+/*
+const user = {
+  id: 45,
+  name: "Romain",
+  email: "romain.matheos.31@gmail.com",
+  admin: "true",
+};
+*/
+function generateAccesToken(user) {
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1800s",
+  });
+}
+
+function generateRefreshToken(user) {
+  return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
+    expiresIn: "1y",
+  });
+}
+
+function authentificateToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1]; // 'Bearer akjhahvihsj' --> Supprimer l'espace et le Bearer qui est une convention de nommage pour les JWT
+
+  if (!token) {
+    return res.sendStatus(401);
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) {
+      return res.sendStatus(401);
+    }
+    req.user = user;
+    next();
+  });
+}
+
+function refreshToken(req, res) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.sendStatus(401);
+  }
+
+  jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) {
+      return res.sendStatus(401);
+    }
+    //TODO : Check en BDD que le user existe toujours
+    delete user.iat;
+    delete user.exp;
+    const refreshedToken = generateAccesToken(user);
+    res.send({
+      acccessToken: refreshedToken,
+    });
+  });
+}
+
 const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -46,7 +106,15 @@ const login = async (req, res) => {
   const match = await bcrypt.compare(password, user.password);
 
   if (match) {
-    return res.send(user);
+    const accessToken = generateAccesToken(user.toJSON());
+    const refreshToken = generateRefreshToken(user.toJSON());
+    return res.send({
+      auth: {
+        user,
+        accessToken,
+        refreshToken,
+      },
+    });
   } else {
     return res.status(401).send({
       message: "Email / Mot de passe incorrect",
@@ -131,4 +199,12 @@ const getUsers = async (req, res) => {
   res.send(users);
 };
 
-module.exports = { login, register, getUsers };
+module.exports = {
+  login,
+  register,
+  getUsers,
+  generateAccesToken,
+  generateRefreshToken,
+  authentificateToken,
+  refreshToken,
+};

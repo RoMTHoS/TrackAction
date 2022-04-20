@@ -1,8 +1,8 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import "../style/Register.css";
+import Home from "../pages/Home";
 
 function Register() {
   const onSubmit = (values) => {
@@ -31,21 +31,29 @@ function Register() {
     });
   };
   return (
-    <div className="register">
-      <h1>Créer un compte</h1>
-      <Formik
-        initialValues={{ firstName: "", lastName: "", password: "", email: "" }}
-        onSubmit={onSubmit}
-      >
-        <Form name="register-form">
-          <Field name="firstName" type="text" placeholder="firstName" />
-          <Field name="lastName" type="text" placeholder="lastName" />
-          <Field name="email" type="email" placeholder="email" />
-          <Field name="password" type="password" placeholder="password" />
-          <button type="submit">Valider</button>
-        </Form>
-      </Formik>
-    </div>
+    <>
+      <Home />
+      <div className="register">
+        <h1>Créer un compte</h1>
+        <Formik
+          initialValues={{
+            firstName: "",
+            lastName: "",
+            password: "",
+            email: "",
+          }}
+          onSubmit={onSubmit}
+        >
+          <Form name="register-form">
+            <Field name="firstName" type="text" placeholder="firstName" />
+            <Field name="lastName" type="text" placeholder="lastName" />
+            <Field name="email" type="email" placeholder="email" />
+            <Field name="password" type="password" placeholder="password" />
+            <button type="submit">Valider</button>
+          </Form>
+        </Formik>
+      </div>
+    </>
   );
 }
 

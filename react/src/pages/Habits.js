@@ -1,15 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../style/Habits.css";
 import tab from "../tab.json";
-import classTableau from "../classTableau.json";
 import { UserContext } from "../context/userContext";
-import { useNavigate } from "react-router-dom";
-import { isEmpty } from "../components/utils";
 import axios from "axios";
 
 function Habits() {
   const { user } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const [listHabit, setListHabit] = useState([]);
   const [habitText, setHabitText] = useState("");
@@ -24,6 +20,7 @@ function Habits() {
   const [idToUpdate, setIdToUpdate] = useState("");
   const [tabToUpdate, setTabToUpdate] = useState([]);
 
+  console.log(user);
   //Modifier la couleur des jours du tableau
   const handleColorSelector = (color) => {
     switch (color) {
@@ -37,6 +34,10 @@ function Habits() {
         break;
       case "Red":
         setColor("box-red");
+        //setBox("red");
+        break;
+      case "Neutre":
+        setColor("box-neutre");
         //setBox("red");
         break;
       default:
@@ -55,7 +56,7 @@ function Habits() {
     const getHabits = async () => {
       try {
         const res = await axios.get("http://localhost:5500/habit");
-        setListHabit(res.data.filter((el) => el.user_email === user.email));
+        setListHabit(res.data.filter((el) => el.user_email === user));
         //console.log(listHabit);
       } catch (error) {
         console.log(error);
@@ -71,7 +72,7 @@ function Habits() {
       const res = await axios.post("http://localhost:5500/habit", {
         habit: habitText,
         condition: conditionText,
-        user_email: user.email,
+        user_email: user,
         className: tab,
       });
       setListHabit((prev) => [...prev, res.data]);
@@ -93,20 +94,21 @@ function Habits() {
     }
   };
 
-  const updateHabit = async () => {
-    try {
-      setTabToUpdate(tabToUpdate.splice(indexToUpdate - 2, 1, color));
-      const res = axios.put(`http://localhost:5500/habit/${idToUpdate}`, {
-        className: tabToUpdate,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const updateHabit = async () => {
+      try {
+        setTabToUpdate(tabToUpdate.splice(indexToUpdate - 2, 1, color));
+        axios.put(`http://localhost:5500/habit/${idToUpdate}`, {
+          className: tabToUpdate,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    updateHabit();
+  }, [box]);
 
-  return isEmpty(user) ? (
-    navigate("/login")
-  ) : (
+  return (
     <div className="habits-tracker">
       <h1> Tracker d'Habitudes </h1>
       <table>
@@ -149,10 +151,6 @@ function Habits() {
               onClick={() => {
                 setIdToUpdate(el._id);
                 setTabToUpdate(el.className);
-                //console.log(el.currentTarget.parentElement.child.key);
-                //console.log(el.currentTarget.cells);
-                //console.log(el.currentTarget.__reactFiber$947zaxh1t3q.key);
-                //setIdToUpdate(el.currentTarget.__reactFiber$947zaxh1t3q.key);
               }}
             >
               {/*console.log(el.className)*/}
@@ -160,33 +158,9 @@ function Habits() {
               <td>{el.habit}</td>
               <td>{el.condition}</td>
               {el.className.map((el) => (
-                <th onClick={updateHabit} className={el}></th>
+                <th className={el}></th>
               ))}
 
-              {/*
-              
-              <th className={el.className[0]}></th>
-              <th className={el.className[1]}></th>
-              <th className={el.className[2]}></th>
-              <th className={el.className[3]}></th>
-              <th className={el.className[4]}></th>
-              <th className={el.className[5]}></th>
-              <th className={el.className[6]}></th>
-              <th className={el.className[7]}></th>
-              <th className={el.className[8]}></th>
-              <th className={el.className[9]}></th>
-              <th className={el.className[10]}></th>
-              <th className={el.className[11]}></th>
-              <th className={el.className[12]}></th>
-              <th className={el.className[13]}></th>
-              <th className={el.className[14]}></th>
-              <th className={el.className[15]}></th>
-              <th className={el.className[16]}></th>
-              <th className={el.className[17]}></th>
-              <th className={el.className[18]}></th>
-              <th className={el.className[19]}></th>
-              <th className={el.className[20]}></th>
-              */}
               <button
                 className="delete-todo-button"
                 onClick={() => {
@@ -229,24 +203,24 @@ function Habits() {
         <div className="radio-btn">
           <div className="green"></div>
           <input type="radio" id="green" name="drone" value="Green" />
-          <label for="Green">Le job est FAIT !</label>
+          <label htmlFor="Green">Le job est FAIT !</label>
         </div>
         <div className="radio-btn">
           <div className="blue"></div>
           <input type="radio" id="blue" name="drone" value="Blue" />
-          <label for="Blue">
+          <label htmlFor="Blue">
             Le job n'est pas fait mais ce n'est pas de ma faute.{" "}
           </label>
         </div>
         <div className="radio-btn">
           <div className="red"></div>
           <input type="radio" id="red" name="drone" value="Red" />
-          <label for="Red">La Résistance m'a eu...</label>
+          <label htmlFor="Red">La Résistance m'a eu...</label>
         </div>
         <div className="radio-btn">
           <div className="neutre"></div>
           <input type="radio" id="red" name="drone" value="Neutre" />
-          <label for="Neutre"> Effacer </label>
+          <label htmlFor="Neutre"> Effacer </label>
         </div>
       </div>
     </div>

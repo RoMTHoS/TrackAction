@@ -32,15 +32,12 @@ const MyCalendar = () => {
   const [allEvents, setAllEvents] = useState(events);
 
   const { user } = useContext(UserContext);
-  const navigate = useNavigate();
 
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
   }
 
-  return isEmpty(user) ? (
-    navigate("/login")
-  ) : (
+  return (
     <div>
       <h1> Calendrier </h1>
       <Calendar
