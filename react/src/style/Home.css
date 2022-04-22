@@ -1,4 +1,5 @@
 .home {
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,4 +15,8 @@
 
 .button button {
   margin: 50px;
+}
+
+h1 {
+  font-size: 40px;
 }

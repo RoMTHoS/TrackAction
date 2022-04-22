@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "../style/Calendar.css";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const locales = {
   "en-US": enUS,
@@ -25,7 +25,7 @@ const localizer = dateFnsLocalizer({
 const MyCalendar = () => {
   const events = JSON.parse(localStorage.getItem("events"));
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
-  const [allEvents, setAllEvents] = useState(events);
+  const [allEvents, setAllEvents] = useState(events || []);
 
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
@@ -34,31 +34,6 @@ const MyCalendar = () => {
   useEffect(() => {
     localStorage.setItem("events", JSON.stringify(allEvents));
   }, [allEvents]);
-
-  /*
-  const clickRef = useRef(null);
-
-  useEffect(() => {
-    return () => {
-      window.clearTimeout(clickRef?.current);
-    };
-  }, []);
-
-  const onSelectEvent = useCallback((calEvent) => {
-    window.clearTimeout(clickRef?.current);
-    clickRef.current = window.setTimeout(() => {
-      window.alert((calEvent, "onSelectEvent"));
-    }, 250);
-  }, []);
-
-  const onDoubleClickEvent = useCallback((calEvent) => {
-
-    window.clearTimeout(clickRef?.current);
-    clickRef.current = window.setTimeout(() => {
-      window.alert((calEvent, "onDoubleClickEvent"));
-    }, 250);
-  }, []);
-  */
 
   return (
     <div className="calendar">
@@ -70,10 +45,6 @@ const MyCalendar = () => {
         endAccessor="end"
         style={{ height: 500 }}
       />
-      {/*
-        onDoubleClickEvent={onDoubleClickEvent}
-        onSelectEvent={onSelectEvent}
-        */}
       <h2> Ajouter un évènement </h2>
       <div className="event-form">
         <label>

@@ -228,24 +228,24 @@ function Habits() {
       >
         <div className="radio-btn">
           <div className="green"></div>
-          <input type="radio" id="green" name="drone" value="Green" />
+          <input type="radio" id="Green" name="drone" value="Green" />
           <label htmlFor="Green">Le job est FAIT !</label>
         </div>
         <div className="radio-btn">
           <div className="blue"></div>
-          <input type="radio" id="blue" name="drone" value="Blue" />
+          <input type="radio" id="Blue" name="drone" value="Blue" />
           <label htmlFor="Blue">
             Le job n'est pas fait mais ce n'est pas de ma faute.{" "}
           </label>
         </div>
         <div className="radio-btn">
           <div className="red"></div>
-          <input type="radio" id="red" name="drone" value="Red" />
+          <input type="radio" id="Red" name="drone" value="Red" />
           <label htmlFor="Red">La Résistance m'a eu...</label>
         </div>
         <div className="radio-btn">
           <div className="neutre"></div>
-          <input type="radio" id="red" name="drone" value="Neutre" />
+          <input type="radio" id="Neutre" name="drone" value="Neutre" />
           <label htmlFor="Neutre"> Effacer </label>
         </div>
       </div>

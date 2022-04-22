@@ -6,7 +6,7 @@ function Acceuil() {
   return (
     <div className="accueil">
       <Home />
-      <h1> BIENVENUE </h1>
+      <h1> Suit et visualise ta PROGRESSSION pour assurer ton EVOLUTION.</h1>
     </div>
   );
 }

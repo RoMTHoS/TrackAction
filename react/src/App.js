@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./components/Navigation";
 import MyCalendar from "./pages/Calendar";
 import Habits from "./pages/Habits";
-import Planning from "./pages/Planning";
 import Notes from "./pages/Notes";
 
 function App() {
@@ -34,7 +33,6 @@ function App() {
         <Route path="/todo" element={<Todo />} />
         <Route path="/calendar" element={<MyCalendar />} />
         <Route path="/habits" element={<Habits />} />
-        <Route path="/planning" element={<Planning />} />
         <Route path="/notes" element={<Notes />} />
       </Routes>
       <ToastContainer />
