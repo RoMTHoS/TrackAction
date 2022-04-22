@@ -1,3 +1,23 @@
+.calendar button {
+  color: white;
+}
+
+.rbc-btn-group .rbc-active {
+  color: black;
+}
+
+.rbc-off-range-bg {
+  background-color: rgba(178, 178, 178, 0.5);
+}
+
+.rbc-month-row .rbc-row-bg .rbc-today {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.rbc-today {
+  background-color: rgba(70, 70, 70, 0.8);
+}
+
 h1,
 h2 {
   display: flex;
@@ -10,4 +30,24 @@ h2 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.event-form input {
+  margin: 10px 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+}
+
+.event-form label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-form button {
+  background-color: rgb(255, 255, 255, 0.8);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  color: #000;
 }

@@ -30,12 +30,12 @@ function Planning() {
       }
     };
     getColors();
-  }, []);
+  }, [user]);
 
   console.log(colors);
 
   useEffect(() => {
-    if (colors !== "") {
+    if (user !== null) {
       setSelfTime(colors[0].self);
       setWorkTime(colors[0].work);
       setObligateTime(colors[0].obligate);

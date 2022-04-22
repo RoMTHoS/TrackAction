@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import "../style/Habits.css";
 import tab from "../tab.json";
@@ -20,7 +21,9 @@ function Habits() {
   const [idToUpdate, setIdToUpdate] = useState("");
   const [tabToUpdate, setTabToUpdate] = useState([]);
 
-  console.log(user);
+  //reset const
+  const [resetId, setResetID] = useState([]);
+
   //Modifier la couleur des jours du tableau
   const handleColorSelector = (color) => {
     switch (color) {
@@ -45,19 +48,13 @@ function Habits() {
     }
   };
 
-  useEffect(() => {
-    if (box !== undefined) {
-      box.target.className = color;
-    }
-  }, [box]);
-
   // Récuperer les habitudes de la base de donné
   useEffect(() => {
     const getHabits = async () => {
       try {
         const res = await axios.get("http://localhost:5500/habit");
         setListHabit(res.data.filter((el) => el.user_email === user));
-        //console.log(listHabit);
+        setResetID(listHabit.map((el) => el._id));
       } catch (error) {
         console.log(error);
       }
@@ -76,6 +73,7 @@ function Habits() {
         className: tab,
       });
       setListHabit((prev) => [...prev, res.data]);
+      setResetID((prev) => [...prev, res.data._id]);
       setHabitText("");
       setConditionText("");
     } catch (error) {
@@ -96,17 +94,40 @@ function Habits() {
 
   useEffect(() => {
     const updateHabit = async () => {
-      try {
-        setTabToUpdate(tabToUpdate.splice(indexToUpdate - 2, 1, color));
-        axios.put(`http://localhost:5500/habit/${idToUpdate}`, {
-          className: tabToUpdate,
-        });
-      } catch (error) {
-        console.log(error);
+      if (box !== undefined) {
+        if (
+          Number(box.target.cellIndex) >= 2 &&
+          Number(box.target.cellIndex) <= 22
+        ) {
+          try {
+            setTabToUpdate(tabToUpdate.splice(indexToUpdate - 2, 1, color));
+            axios.put(`http://localhost:5500/habit/${idToUpdate}`, {
+              className: tabToUpdate,
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }
       }
     };
     updateHabit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [box]);
+
+  //Réinitialisr le tableau
+  const reset = () => {
+    try {
+      console.log(resetId);
+      setTabToUpdate(tab);
+      resetId.forEach((id) =>
+        axios.put(`http://localhost:5500/habit/${id}`, {
+          className: tab,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="habits-tracker">
@@ -137,6 +158,11 @@ function Habits() {
             <th className="day"> 19 </th>
             <th className="day"> 20 </th>
             <th className="day"> 21 </th>
+            <td>
+              <button className="reset-btn" onClick={reset}>
+                Réinitialiser
+              </button>
+            </td>
           </tr>
         </thead>
         <tbody
@@ -153,22 +179,22 @@ function Habits() {
                 setTabToUpdate(el.className);
               }}
             >
-              {/*console.log(el.className)*/}
-              {/*console.log(el._id)*/}
               <td>{el.habit}</td>
               <td>{el.condition}</td>
-              {el.className.map((el) => (
-                <th className={el}></th>
+              {el.className.map((el, index) => (
+                <th key={index} className={el}></th>
               ))}
-
-              <button
-                className="delete-todo-button"
-                onClick={() => {
-                  deleteHabit(el._id);
-                }}
-              >
-                Supprimer
-              </button>
+              <td>
+                <button
+                  className="delete-btn"
+                  onClick={() => {
+                    deleteHabit(el._id);
+                    setResetID(resetId.filter((id) => id !== el._id));
+                  }}
+                >
+                  Supprimer
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

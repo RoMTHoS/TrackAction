@@ -11,7 +11,6 @@ function Todo() {
   const [updateItemText, setUpdateItemText] = useState("");
 
   const { user } = useContext(UserContext);
-  console.log(user);
 
   // add new todo item to database
   const addItem = async (e) => {

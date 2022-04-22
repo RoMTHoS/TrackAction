@@ -7,11 +7,8 @@ import enUS from "date-fns/locale/en-US";
 import DatePicker from "react-datepicker";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { isEmpty } from "../components/utils";
-import { UserContext } from "../context/userContext";
 import "../style/Calendar.css";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const locales = {
   "en-US": enUS,
@@ -25,20 +22,46 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const events = [];
-
 const MyCalendar = () => {
+  const events = JSON.parse(localStorage.getItem("events"));
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setAllEvents] = useState(events);
-
-  const { user } = useContext(UserContext);
 
   function handleAddEvent() {
     setAllEvents([...allEvents, newEvent]);
   }
 
+  useEffect(() => {
+    localStorage.setItem("events", JSON.stringify(allEvents));
+  }, [allEvents]);
+
+  /*
+  const clickRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(clickRef?.current);
+    };
+  }, []);
+
+  const onSelectEvent = useCallback((calEvent) => {
+    window.clearTimeout(clickRef?.current);
+    clickRef.current = window.setTimeout(() => {
+      window.alert((calEvent, "onSelectEvent"));
+    }, 250);
+  }, []);
+
+  const onDoubleClickEvent = useCallback((calEvent) => {
+
+    window.clearTimeout(clickRef?.current);
+    clickRef.current = window.setTimeout(() => {
+      window.alert((calEvent, "onDoubleClickEvent"));
+    }, 250);
+  }, []);
+  */
+
   return (
-    <div>
+    <div className="calendar">
       <h1> Calendrier </h1>
       <Calendar
         localizer={localizer}
@@ -47,31 +70,43 @@ const MyCalendar = () => {
         endAccessor="end"
         style={{ height: 500 }}
       />
+      {/*
+        onDoubleClickEvent={onDoubleClickEvent}
+        onSelectEvent={onSelectEvent}
+        */}
       <h2> Ajouter un évènement </h2>
       <div className="event-form">
-        <input
-          type="text"
-          placeholder="Ajouter un titre"
-          //style={{ width: "20%", marginRigth: "10px" }}
-          value={newEvent.title}
-          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-        />
-        <div>
-          <DatePicker
-            placeholderText="Début"
-            //style={{ marginRight: "10px" }}
-            selected={newEvent.start}
-            onChange={(start) => setNewEvent({ ...newEvent, start })}
+        <label>
+          Titre
+          <input
+            type="text"
+            placeholder="Ajouter un titre"
+            value={newEvent.title}
+            onChange={(e) =>
+              setNewEvent({ ...newEvent, title: e.target.value })
+            }
           />
-        </div>
-        <div>
-          <DatePicker
-            placeholderText="Fin"
-            //style={{ marginRight: "10px" }}
-            selected={newEvent.end}
-            onChange={(end) => setNewEvent({ ...newEvent, end })}
-          />
-        </div>
+        </label>
+        <label>
+          Début :
+          <div>
+            <DatePicker
+              placeholderText="Début"
+              selected={newEvent.start}
+              onChange={(start) => setNewEvent({ ...newEvent, start })}
+            />
+          </div>
+        </label>
+        <label>
+          Fin :
+          <div>
+            <DatePicker
+              placeholderText="Fin"
+              selected={newEvent.end}
+              onChange={(end) => setNewEvent({ ...newEvent, end })}
+            />
+          </div>
+        </label>
         <button onClick={handleAddEvent}>Ajouter un évennement</button>
       </div>
     </div>

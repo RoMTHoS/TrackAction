@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -18,10 +18,10 @@ function App() {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
-    console.log(loggedInUser);
     if (loggedInUser) {
       setUser(loggedInUser);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

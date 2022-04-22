@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/Navigation.css";
 import { UserContext } from "../context/userContext";
-import Acceuil from "../pages/Acceuil";
 
 function Navigation() {
   const { user, setUser } = useContext(UserContext);
@@ -10,15 +9,23 @@ function Navigation() {
 
   const exit = () => {
     setUser(null);
-    localStorage.clear();
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
+  const connect = () => {
     navigate("/");
   };
 
   return (
     <nav>
-      <button onClick={exit}> Deconnexion</button>
+      {user === null ? (
+        <button onClick={connect}> Connexion </button>
+      ) : (
+        <button onClick={exit}> Deconnexion</button>
+      )}
+
       <h3>{user}</h3>
-      <Link to="/planning">Planing Hebdomadaire</Link>
       <Link to="/habits">Tracker d'habitude</Link>
       <Link to="/todo">Todo Liste</Link>
       <Link to="/notes">Notes</Link>

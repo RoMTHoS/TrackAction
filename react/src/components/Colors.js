@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import reactCSS from "reactcss";
 import { CompactPicker } from "react-color";
+import { UserContext } from "../context/userContext";
 
 function Colors(props) {
   const bracket = [props.color.indexOf("("), props.color.indexOf(")")];
   const colorBracket = props.color.substring(bracket[0] + 1, bracket[1]);
   const colorRGB = colorBracket.split(",");
+
+  const { user } = useContext(UserContext);
 
   console.log(colorRGB);
   console.log(typeof colorRGB[0]);
@@ -19,7 +22,9 @@ function Colors(props) {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
   useEffect(() => {
-    setColor({ r: colorRGB[0], g: colorRGB[1], b: colorRGB[2], a: "1" });
+    if (user != null) {
+      setColor({ r: colorRGB[0], g: colorRGB[1], b: colorRGB[2], a: "1" });
+    }
   }, []);
 
   const handleClick = () => {
