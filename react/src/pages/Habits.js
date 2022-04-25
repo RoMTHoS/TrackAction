@@ -60,7 +60,7 @@ function Habits() {
       }
     };
     getHabits();
-  }, []);
+  }, [user]);
 
   // Ajouter une nouvelle habitude
   const addHabit = async (e) => {

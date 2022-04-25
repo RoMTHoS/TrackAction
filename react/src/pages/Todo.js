@@ -15,11 +15,11 @@ function Todo() {
   // add new todo item to database
   const addItem = async (e) => {
     e.preventDefault();
-    console.log(user.email);
+    console.log(user);
     try {
       const res = await axios.post("http://localhost:5500/api/item", {
         item: itemText,
-        user_email: user.email,
+        user_email: user,
       });
       setListItems((prev) => [...prev, res.data]);
       setItemText("");
