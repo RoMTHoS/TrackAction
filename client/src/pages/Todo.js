@@ -17,10 +17,13 @@ function Todo() {
     e.preventDefault();
     console.log(user);
     try {
-      const res = await axios.post("http://localhost:5500/api/item", {
-        item: itemText,
-        user_email: user,
-      });
+      const res = await axios.post(
+        "https://trackaction.herokuapp.com/api/item",
+        {
+          item: itemText,
+          user_email: user,
+        }
+      );
       setListItems((prev) => [...prev, res.data]);
       setItemText("");
     } catch (error) {
@@ -32,7 +35,9 @@ function Todo() {
   useEffect(() => {
     const getItemList = async () => {
       try {
-        const res = await axios.get("http://localhost:5500/api/items");
+        const res = await axios.get(
+          "https://trackaction.herokuapp.com/api/items"
+        );
         setListItems(res.data.filter((el) => el.user_email === user));
       } catch (error) {
         console.log(error);
@@ -44,7 +49,7 @@ function Todo() {
   // Delete item
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`http://localhost:5500/api/item/${id}`);
+      await axios.delete(`https://trackaction.herokuapp.com/api/item/${id}`);
       const newListItems = listItems.filter((item) => item._id !== id);
       setListItems(newListItems);
     } catch (error) {

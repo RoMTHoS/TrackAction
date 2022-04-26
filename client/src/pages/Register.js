@@ -7,7 +7,7 @@ import Home from "../pages/Home";
 function Register() {
   const onSubmit = (values) => {
     const frm = document.getElementsByName("register-form")[0];
-    fetch("http://localhost:5500/register", {
+    fetch("https://trackaction.herokuapp.com/register", {
       method: "POST",
       body: JSON.stringify(values),
       headers: {

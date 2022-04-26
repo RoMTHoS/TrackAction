@@ -52,7 +52,7 @@ function Habits() {
   useEffect(() => {
     const getHabits = async () => {
       try {
-        const res = await axios.get("http://localhost:5500/habit");
+        const res = await axios.get("https://trackaction.herokuapp.com/habit");
         setListHabit(res.data.filter((el) => el.user_email === user));
         setResetID(listHabit.map((el) => el._id));
       } catch (error) {
@@ -66,7 +66,7 @@ function Habits() {
   const addHabit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5500/habit", {
+      const res = await axios.post("https://trackaction.herokuapp.com/habit", {
         habit: habitText,
         condition: conditionText,
         user_email: user,
@@ -84,7 +84,7 @@ function Habits() {
   //Supprimer une habitude
   const deleteHabit = async (id) => {
     try {
-      await axios.delete(`http://localhost:5500/habit/${id}`);
+      await axios.delete(`https://trackaction.herokuapp.com/habit/${id}`);
       const newListHabit = listHabit.filter((item) => item._id !== id);
       setListHabit(newListHabit);
     } catch (error) {
@@ -101,7 +101,7 @@ function Habits() {
         ) {
           try {
             setTabToUpdate(tabToUpdate.splice(indexToUpdate - 2, 1, color));
-            axios.put(`http://localhost:5500/habit/${idToUpdate}`, {
+            axios.put(`https://trackaction.herokuapp.com/habit/${idToUpdate}`, {
               className: tabToUpdate,
             });
           } catch (error) {
@@ -120,7 +120,7 @@ function Habits() {
       console.log(resetId);
       setTabToUpdate(tab);
       resetId.forEach((id) =>
-        axios.put(`http://localhost:5500/habit/${id}`, {
+        axios.put(`https://trackaction.herokuapp.com/habit/${id}`, {
           className: tab,
         })
       );
