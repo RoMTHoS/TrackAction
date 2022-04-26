@@ -27,7 +27,6 @@ function Login() {
     }).then((resultat) => {
       if (resultat.status === 200) {
         resultat.json().then((res) => {
-          console.log(res);
           instance.defaults.headers.common[
             "authorization"
           ] = `Bearer ${res.auth.accessToken}`;
@@ -51,7 +50,7 @@ function Login() {
     instance
       .get("/me")
       .then((response) => {
-        console.log(response);
+        //console.log(response);
       })
       .catch((err) => {
         console.log(err);
