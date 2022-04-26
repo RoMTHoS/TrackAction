@@ -1,0 +1,106 @@
+.todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(245, 245, 220, 0.8);
+  color: rgb(0, 0, 0);
+  width: 500px;
+  margin: 50px auto;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.todo h1 {
+  text-align: center;
+}
+
+.todo-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.todo-form input {
+  padding: 10px;
+  width: 85%;
+  color: rgb(0, 0, 0);
+  background-color: rgba(221, 221, 221, 0.499);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 15px;
+}
+
+.todo-form input:focus,
+.todo-form form button:focus {
+  outline: none;
+}
+
+.todo-form button {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.todolist-items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item-content {
+  width: 60%;
+}
+
+.todo-item button {
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.todo-item button:focus {
+  outline: none;
+}
+
+.update-todo-button {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  color: #000;
+}
+
+.delete-todo-button {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  color: #000;
+}
+
+.update-todo-form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.update-todo-input {
+  width: 80%;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  padding: 8px;
+  outline: none;
+}
+
+.update-todo-new-btn {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 0, 0);
+  color: #000;
+  cursor: pointer;
+}
