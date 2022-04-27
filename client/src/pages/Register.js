@@ -22,6 +22,7 @@ function Register() {
           console.log(res);
         });
       } else if (resultat.status >= 500) {
+        console.log(resultat);
         toast("Erreur Serveur");
       } else {
         resultat.json().then((res) => {

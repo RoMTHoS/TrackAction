@@ -11,7 +11,16 @@ app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 5500;
 
 //Use cors
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+  allowedHeaders: ["sessionId", "Content-Type"],
+  exposedHeaders: ["sessionId"],
+  methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
+  preflightContinue: false,
+};
+
+app.use(cors(corsOptions));
 
 //Import routes
 const Routes = require("./routes/routes");

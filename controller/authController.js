@@ -175,7 +175,6 @@ const register = async (req, res) => {
     });
   }
 
-  console.log(password);
   //Un mot de passe crypté s'appelle un hash
   //premier arg le string a crypté et le deuxième c'est le sel qui correspond au nombre de fois qu'on va crypté (le cou)
   const hash = await bcrypt.hash(password, 10);
