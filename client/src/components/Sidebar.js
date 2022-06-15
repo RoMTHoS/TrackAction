@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import plusIcon from "../assets/plus.jpg";
 
 import "../style/Sidebar.css";
@@ -8,7 +6,7 @@ function Sidebar(props) {
   //const colors = ["#2B2B2B", "#fec971", " #00d4fe", "#b693fd", "#e4ee91"];
   const color = "#2B2B2B";
 
-  const [listOpen, setListOpen] = useState(false);
+  //const [listOpen, setListOpen] = useState(false);
 
   return (
     <div className="sidebar">
