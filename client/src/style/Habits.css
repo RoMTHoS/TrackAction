@@ -5,6 +5,17 @@
   padding: 1rem;
 }
 
+.add-habit form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.add-habit form .btn {
+  display: flex;
+  justify-content: center;
+}
+
 table {
   border-collapse: collapse;
   border-radius: 15px;
@@ -20,13 +31,14 @@ td {
 }
 
 th {
-  background-color: rgb(150, 150, 150);
+  background-color: rgba(133, 156, 226, 0.3);
   text-align: center;
-  color: black;
+  color: white;
 }
 
 td {
-  background-color: rgb(59, 59, 59);
+  background-color: transparent;
+  color: white;
 }
 
 form {
@@ -34,34 +46,17 @@ form {
   gap: 5px;
 }
 
-form td:last-child {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 form * {
   font-size: 20px;
-}
-
-input {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: black;
-}
-
-button {
-  background-color: rgb(255, 255, 255, 0.8);
-  border: 1px solid rgb(0, 0, 0);
-  border-radius: 5px;
-  color: #000;
 }
 
 .delete-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
   width: 100%;
-  background-color: rgb(59, 59, 59);
+  height: 100%;
+  background-color: transparent;
   color: white;
   letter-spacing: 1px;
   font-weight: 500;
@@ -75,7 +70,7 @@ button {
   justify-content: center;
   margin: auto;
   width: 100%;
-  background-color: rgb(59, 59, 59);
+  background-color: transparent;
   color: white;
   letter-spacing: 1px;
   font-weight: 500;
@@ -88,19 +83,19 @@ button {
 }
 
 .box-green {
-  background-color: rgba(0, 128, 0, 0.75);
+  background-color: rgba(0, 128, 0, 0.6);
 }
 
 .box-blue {
-  background-color: rgba(0, 0, 255, 0.75);
+  background-color: rgba(0, 0, 255, 0.6);
 }
 
 .box-red {
-  background-color: rgba(255, 0, 0, 0.75);
+  background-color: rgba(255, 0, 0, 0.6);
 }
 
 .box-neutre {
-  background-color: rgb(150, 150, 150);
+  background-color: rgba(133, 156, 226, 0.3);
 }
 
 .add-habit {
@@ -141,5 +136,5 @@ button {
 .neutre {
   width: 30px;
   height: 30px;
-  background-color: rgb(150, 150, 150);
+  background-color: rgba(133, 156, 226, 0.3);
 }

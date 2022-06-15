@@ -1,5 +1,5 @@
 .calendar button {
-  color: white;
+  color: rgb(170, 190, 249);
 }
 
 .rbc-btn-group .rbc-active {
@@ -7,15 +7,15 @@
 }
 
 .rbc-off-range-bg {
-  background-color: rgba(178, 178, 178, 0.5);
+  background-color: rgba(133, 156, 226, 0.6);
 }
 
 .rbc-month-row .rbc-row-bg .rbc-today {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(133, 156, 226, 0.8);
 }
 
 .rbc-today {
-  background-color: rgba(70, 70, 70, 0.8);
+  background-color: rgba(133, 156, 226, 0.8);
 }
 
 h1,
@@ -34,8 +34,6 @@ h2 {
 
 .event-form input {
   margin: 10px 30px;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: black;
 }
 
 .event-form label {
@@ -46,8 +44,5 @@ h2 {
 }
 
 .event-form button {
-  background-color: rgb(255, 255, 255, 0.8);
-  border: 1px solid rgb(0, 0, 0);
   border-radius: 5px;
-  color: #000;
 }

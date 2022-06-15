@@ -15,3 +15,47 @@ code {
 a {
   color: beige;
 }
+
+* {
+  font-family: "Expletus Sans", cursive;
+  color: #859ce2;
+}
+
+input {
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 4px;
+  outline: none;
+  padding: 4px;
+  box-sizing: border-box;
+  transition: 0.3s;
+  background-color: transparent;
+  color: #859ce2;
+}
+
+input:focus {
+  border-color: #859ce2;
+  box-shadow: 0 0 8px 0 #859ce2;
+}
+
+input::placeholder {
+  color: #859ce2;
+}
+
+input:not([value=""]):not(:focus) {
+  background-color: rgba(133, 156, 226, 0.6);
+  color: black;
+}
+
+button {
+  background-color: transparent;
+  border-radius: 4px;
+  border: 2px solid #aaa;
+  color: #859ce2;
+  padding: 4px;
+}
+
+button:hover {
+  border-color: #859ce2;
+  box-shadow: 0 0 8px 0 #859ce2;
+}

@@ -46,11 +46,19 @@ function Register() {
           onSubmit={onSubmit}
         >
           <Form name="register-form">
-            <Field name="firstName" type="text" placeholder="firstName" />
-            <Field name="lastName" type="text" placeholder="lastName" />
-            <Field name="email" type="email" placeholder="email" />
-            <Field name="password" type="password" placeholder="password" />
-            <button type="submit">Valider</button>
+            <div className="field">
+              <Field name="firstName" type="text" placeholder="Nom" />
+              <Field name="lastName" type="text" placeholder="Prenom" />
+              <Field name="email" type="email" placeholder="Mail" />
+              <Field
+                name="password"
+                type="password"
+                placeholder="Mot de passe"
+              />
+            </div>
+            <div className="btn">
+              <button type="submit">Inscription</button>
+            </div>
           </Form>
         </Formik>
       </div>

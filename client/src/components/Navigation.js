@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/Navigation.css";
 import { UserContext } from "../context/userContext";
+import { Button } from "@mui/material";
 
 function Navigation() {
   const { user, setUser } = useContext(UserContext);
@@ -18,11 +19,15 @@ function Navigation() {
   };
 
   return (
-    <nav>
+    <nav className="navigation">
       {user === null ? (
-        <button onClick={connect}> Connexion </button>
+        <Button onClick={connect} variant="outlined">
+          Connexion
+        </Button>
       ) : (
-        <button onClick={exit}> Deconnexion</button>
+        <Button onClick={exit} variant="outlined" color="primary">
+          Deconnexion
+        </Button>
       )}
 
       <h3>{user}</h3>

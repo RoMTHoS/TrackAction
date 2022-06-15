@@ -1,5 +1,6 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 import "../style/Home.css";
 
 function Home() {
@@ -16,10 +17,13 @@ function Home() {
     <>
       <main className="home">
         <h1>TRACK ACTION</h1>
-        <Link to="/"> Accueil </Link>
         <div className="button">
-          <button onClick={login}> Se connecter </button>
-          <button onClick={register}> S'inscrire </button>
+          <Button onClick={login} variant="outlined">
+            Se connecter
+          </Button>
+          <Button onClick={register} variant="outlined">
+            S'inscrire
+          </Button>
         </div>
       </main>
     </>

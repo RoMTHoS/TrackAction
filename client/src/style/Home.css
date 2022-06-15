@@ -1,5 +1,5 @@
 .home {
-  height: 60vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,8 +15,10 @@
 
 .button button {
   margin: 50px;
+  font-size: 20px;
 }
 
-h1 {
-  font-size: 40px;
+.home h1 {
+  font-size: 60px;
+  letter-spacing: 4px;
 }

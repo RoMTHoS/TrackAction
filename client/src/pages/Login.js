@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
-import "../style/Login.css";
 import { UserContext } from "../context/userContext";
 import { toast } from "react-toastify";
 import Home from "../pages/Home";
 import axios from "axios";
+import "../style/Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ function Login() {
           loadUserInfos();
           setUser(res.auth.user.email);
           localStorage.setItem("user", res.auth.user.email);
-          navigate("/todo");
+          navigate("/habits");
         });
       } else if (resultat.status >= 500) {
         toast("Erreur Serveur");
@@ -99,15 +99,17 @@ function Login() {
         <h1>Connexion</h1>
         <Formik initialValues={{ email: "", password: "" }} onSubmit={onSubmit}>
           <Form className="auth-form">
-            <label htmlFor="email">
-              Adresse mail :
-              <Field name="email" type="email" placeholder="email" />
-            </label>
-            <label htmlFor="password">
-              Mot de passe :
-              <Field name="password" type="password" placeholder="password" />
-            </label>
-            <button type="submit">Valider</button>
+            <div className="field">
+              <Field name="email" type="email" placeholder="Adresse mail" />
+              <Field
+                name="password"
+                type="password"
+                placeholder="Mot de passe"
+              />
+            </div>
+            <div>
+              <button type="submit">Connexion</button>
+            </div>
           </Form>
         </Formik>
       </div>

@@ -13,7 +13,7 @@ import Habits from "./pages/Habits";
 import Notes from "./pages/Notes";
 
 function App() {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div>
-      <Navigation />
+      {user && <Navigation />}
       <Routes>
         <Route path="/" element={<Acceuil />} />
         <Route path="/login" element={<Login />} />

@@ -54,7 +54,6 @@ function Habits() {
       try {
         const res = await axios.get("https://trackaction.herokuapp.com/habit");
         setListHabit(res.data.filter((el) => el.user_email === user));
-        setResetID(listHabit.map((el) => el._id));
       } catch (error) {
         console.log(error);
       }
@@ -116,9 +115,9 @@ function Habits() {
 
   //Réinitialisr le tableau
   const reset = () => {
+    //setTabToUpdate(tab);
+
     try {
-      console.log(resetId);
-      setTabToUpdate(tab);
       resetId.forEach((id) =>
         axios.put(`https://trackaction.herokuapp.com/habit/${id}`, {
           className: tab,
@@ -128,6 +127,11 @@ function Habits() {
       console.log(error);
     }
   };
+
+  // Reset tableau de color des habits en bdd
+  useEffect(() => {
+    setResetID(listHabit.map((el) => el._id));
+  }, [listHabit]);
 
   return (
     <div className="habits-tracker">
@@ -202,23 +206,27 @@ function Habits() {
       <div className="add-habit">
         <h2> Ajouter une habitude </h2>
         <form onSubmit={(e) => addHabit(e)}>
-          <input
-            type="text"
-            name="habit"
-            required="required"
-            placeholder="Ajouter une habitude"
-            onChange={(e) => setHabitText(e.target.value)}
-            value={habitText}
-          />
-          <input
-            type="text"
-            name="habit"
-            required="required"
-            placeholder="Ajouter une condition"
-            onChange={(e) => setConditionText(e.target.value)}
-            value={conditionText}
-          />
-          <button type="submit"> Ajouter </button>
+          <div>
+            <input
+              type="text"
+              name="habit"
+              required="required"
+              placeholder="Ajouter une habitude"
+              onChange={(e) => setHabitText(e.target.value)}
+              value={habitText}
+            />
+            <input
+              type="text"
+              name="habit"
+              required="required"
+              placeholder="Ajouter une condition"
+              onChange={(e) => setConditionText(e.target.value)}
+              value={conditionText}
+            />
+          </div>
+          <div className="btn">
+            <button type="submit">Ajouter </button>
+          </div>
         </form>
       </div>
       <h2> Selection des couleurs </h2>

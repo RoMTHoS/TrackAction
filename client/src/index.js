@@ -4,14 +4,18 @@ import "./index.css";
 import App from "./App";
 import UserProvider from "./context/userContext";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "../src/style/theme";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
   <UserProvider>
-    <BrowserRouter>
-      <App tab="home" />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <App tab="home" />
+      </BrowserRouter>
+    </ThemeProvider>
   </UserProvider>
 );
